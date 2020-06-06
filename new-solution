@@ -1,0 +1,33 @@
+def validBraces(string):
+    while '{}' in string or '()' in string or '[]' in string:
+        string = string.replace('{}', '')
+        string = string.replace('()', '')
+        string = string.replace('[]', '')
+    return string == ''
+
+print(validBraces("[(])"))
+
+
+or
+
+
+def validBraces(string):
+    braces = {"(": ")", "[": "]", "{": "}"}
+    stack = []
+    for character in string:
+        if character in braces.keys():
+            stack.append(character)
+        else:
+            if len(stack) == 0 or braces[stack.pop()] != character:
+                return False
+    return len(stack) == 0  
+    
+    
+    
+or
+
+
+
+def validBraces(s, previous = ''):
+  while s != previous: previous, s = s, s.replace('[]','').replace('{}','').replace('()','')
+  return not s
